@@ -1,5 +1,7 @@
 # FixFiles
-Fix common file errors and problems for phpBB extension files
+Fix common file errors, problems and coding guidelines for phpBB extension files.
+
+![FixFiles Console Output](http://i.imgur.com/gBvL8by.png)
 
 ## Installation
 To install this tool, you need to build the project and use the generated `FixFiles.exe`.
@@ -23,7 +25,7 @@ Following Parameters are allowed
 Also note that all files in this directory will be adjusted to add UTF8 without BOM, no matter if anything other will be changed or not. So GitHub will show all files as changed (last modified date has changed).
 
 ## Possible Uses Cases
-1. **I want to Fix all files of my extension and choose the options**<br />
+1. **I want to fix all files of my extension and choose the options**<br />
 => `FixFiles`
 2. **I want to fix files for extension xy**<br />
 => `FixFiles --folder author\extensionname --force`
