@@ -26,9 +26,9 @@ namespace FixFiles
 		public static string Helpline =
 			  "Following Parameters are allowed:" + Environment.NewLine
 			+ Texts.Tab + "--help" + Texts.Tab + "Displays this help" + Environment.NewLine
-			+ Texts.Tab + "--dir ____" + Texts.Tab + "Specify the path to the directory of phpBB" + Environment.NewLine
-			+ Texts.Tab + "--file ____" + Texts.Tab + "Specify the filename wich should be used as config" + Environment.NewLine
-			+ Texts.Tab + "--force" + Texts.Tab + "Force execution without interruption" + Environment.NewLine
-			+ Texts.Tab + "--show" + Texts.Tab + "Shows the current used config" + Environment.NewLine;
+			+ Texts.Tab + "--folder ____" + Texts.Tab + "Specify the folder in wich all files (recursive) should be fixed" + Environment.NewLine
+			+ Texts.Tab + "--filetypes ____" + Texts.Tab + "Specify the filetypes wich should be fixed" + Environment.NewLine
+			+ Texts.Tab + "--guidelines" + Texts.Tab + "If this parameter is set, some general coding guidelines will be done automatically (like formatting tabs and empty lines)" + Environment.NewLine
+			+ Texts.Tab + "--force" + Texts.Tab + "Force execution without interruption" + Environment.NewLine;
 	}
 }

@@ -18,7 +18,7 @@ namespace FixFiles
 
 			if (args.ContainsKey(Args.FOLDER))
 			{
-				Environment.CurrentDirectory = args[Args.FOLDER];
+				Environment.CurrentDirectory = Path.GetFullPath(args[Args.FOLDER]);
 			}
 
 			Console.WriteLine(Texts.InfoCurrentFolder, Environment.CurrentDirectory);
@@ -32,7 +32,6 @@ namespace FixFiles
 
 			try
 			{
-				string folder = string.Empty;
 				string types = string.Empty;
 				string codingGuidelines = string.Empty;
 
@@ -41,7 +40,9 @@ namespace FixFiles
 					if (!args.ContainsKey(Args.FOLDER))
 					{
 						Console.Write(Texts.QuestionFolder);
-						folder = Console.ReadLine(); 
+						Environment.CurrentDirectory = Path.GetFullPath(Console.ReadLine());
+
+						Console.WriteLine(Texts.InfoCurrentFolder, Environment.CurrentDirectory);
 					}
 
 					if (args.ContainsKey(Args.FILETYPES))
@@ -109,6 +110,12 @@ namespace FixFiles
 						{
 							// Replace two to four whitespaces with tabs for all other files
 							s = Regex.Replace(s, @" {2,4}", "\t");
+						}
+
+						// Add empty line at the end of a file (if missing)
+						if (!s.EndsWith("\n"))
+						{
+							s = s + "\n";
 						}
 					}
 
