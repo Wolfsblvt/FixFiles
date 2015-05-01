@@ -58,7 +58,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Release\FixFiles.exe" />
     <Content Include="changelog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
