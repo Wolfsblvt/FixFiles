@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -32,41 +33,44 @@ namespace FixFiles
 
 			try
 			{
+				bool noForce = !args.ContainsKey(Args.FORCE);
 				string types = string.Empty;
 				string codingGuidelines = string.Empty;
 
-				if (!args.ContainsKey(Args.FORCE))
+
+				if (noForce && !args.ContainsKey(Args.FOLDER))
 				{
-					if (!args.ContainsKey(Args.FOLDER))
+					Console.Write(Texts.QuestionFolder);
+					string line = Console.ReadLine();
+					if (!string.IsNullOrEmpty(line))
 					{
-						Console.Write(Texts.QuestionFolder);
-						Environment.CurrentDirectory = Path.GetFullPath(Console.ReadLine());
-
-						Console.WriteLine(Texts.InfoCurrentFolder, Environment.CurrentDirectory);
+						Environment.CurrentDirectory = Path.GetFullPath(line);
 					}
 
-					if (args.ContainsKey(Args.FILETYPES))
-					{
-						types = args[Args.FILETYPES];
-					}
-					else
-					{
-						Console.Write(Texts.QuestionFileTypes, defaultTypes);
-						types = Console.ReadLine();
-					}
-
-					if (args.ContainsKey(Args.GUIDELINES))
-					{
-						codingGuidelines = args[Args.GUIDELINES];
-					}
-					else
-					{
-						Console.Write(Texts.QuestionCodingGuidelines);
-						codingGuidelines = Console.ReadLine(); 
-					}
-
-					Console.WriteLine(); 
+					Console.WriteLine(Texts.InfoCurrentFolder, Environment.CurrentDirectory);
 				}
+
+				if (args.ContainsKey(Args.FILETYPES))
+				{
+					types = args[Args.FILETYPES];
+				}
+				else if (noForce)
+				{
+					Console.Write(Texts.QuestionFileTypes, defaultTypes);
+					types = Console.ReadLine();
+				}
+
+				if (args.ContainsKey(Args.GUIDELINES))
+				{
+					codingGuidelines = args[Args.GUIDELINES];
+				}
+				else if (noForce)
+				{
+					Console.Write(Texts.QuestionCodingGuidelines);
+					codingGuidelines = Console.ReadLine();
+				}
+
+				Console.WriteLine(); 
 
 
 				// Setting up used vars
@@ -76,7 +80,24 @@ namespace FixFiles
 
 				int count = 0, unmodified = 0;
 
-				var files = new DirectoryInfo(Environment.CurrentDirectory).GetFilesByExtensions(SearchOption.AllDirectories, types);
+				IEnumerable<FileInfo> files;
+				if (args.ContainsKey(Args.FILE))
+				{
+					if (File.Exists(args[Args.FILE]))
+					{
+						// If this is a full file path, we take this
+						files = new List<FileInfo>() { new FileInfo(args[Args.FILE]) };
+					}
+					else
+					{
+						// Otherwise we consider it is a file name and search in the current directory
+						files = new DirectoryInfo(Environment.CurrentDirectory).GetFiles(args[Args.FILE]);
+					}
+				}
+				else
+				{
+					files = new DirectoryInfo(Environment.CurrentDirectory).GetFilesByExtensions(SearchOption.AllDirectories, types);
+				}
 
 				foreach (var f in files)
 				{

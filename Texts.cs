@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace FixFiles
 {
@@ -27,6 +27,7 @@ namespace FixFiles
 			  "Following Parameters are allowed:" + Environment.NewLine
 			+ Texts.Tab + "--help" + Texts.Tab + "Displays this help" + Environment.NewLine
 			+ Texts.Tab + "--folder ____" + Texts.Tab + "Specify the folder in wich all files (recursive) should be fixed" + Environment.NewLine
+			+ Texts.Tab + "--file ____" + Texts.Tab + "Specify the file name if just a single file should be fixed. Can either be full file path or just file name, wich will be searched in the current folder." + Environment.NewLine
 			+ Texts.Tab + "--filetypes ____" + Texts.Tab + "Specify the filetypes wich should be fixed" + Environment.NewLine
 			+ Texts.Tab + "--guidelines" + Texts.Tab + "If this parameter is set, some general coding guidelines will be done automatically (like formatting tabs and empty lines)" + Environment.NewLine
 			+ Texts.Tab + "--force" + Texts.Tab + "Force execution without interruption" + Environment.NewLine;

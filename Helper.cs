@@ -55,6 +55,7 @@ namespace FixFiles
 	public class Args
 	{
 		public const string HELP = "help";
+		public const string FILE = "file";
 		public const string FOLDER = "folder";
 		public const string FILETYPES = "filetypes";
 		public const string GUIDELINES = "guidelines";
