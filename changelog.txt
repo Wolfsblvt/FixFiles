@@ -1,0 +1,13 @@
+Actual Version
+**************
+
+-- Version 0.2.0 --------------
+	• Add possibility to fix a single file
+	• Fix bug with force where parameters are lost
+
+###########################################################################
+Past Versions
+*************
+
+-- Version 0.1.0 --------------
+	• First checkin with current features

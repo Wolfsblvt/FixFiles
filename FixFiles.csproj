@@ -55,6 +55,11 @@
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include="App.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Release\FixFiles.exe" />
+    <Content Include="changelog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
